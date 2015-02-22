@@ -1,0 +1,67 @@
+syntax: glob
+
+
+# Compiled source #
+###################
+target/
+bin/
+*.class
+
+# Packages #
+############
+MANIFEST.MF
+*.jar
+*.war
+*.ear
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# IDE Config #
+##############
+.classpath
+.project
+.metadata
+.includepath
+.settings/
+*.iml
+*.ipr
+*.iws
+.idea/
+.pmd
+.checkstyle
+
+# Log #
+#######
+*.log
+log/
+logContent/
+
+# TestNG #
+##########
+testng.xml
+test-output/
+
+# OS generated files #
+######################
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+Icon?
+.DS_Store
+.DS_Store?
+._*
+.Trashes
+$RECYCLE.BIN/
+
+# Versioning #
+#############
+*.orig
+CVS/
+
+NewFile.xml

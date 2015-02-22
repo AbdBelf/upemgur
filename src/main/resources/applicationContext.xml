@@ -1,0 +1,64 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:jpa="http://www.springframework.org/schema/data/jpa" xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/util
+                           http://www.springframework.org/schema/util/spring-util.xsd
+                           http://www.springframework.org/schema/context 
+                           http://www.springframework.org/schema/context/spring-context.xsd
+                           http://www.springframework.org/schema/mvc 
+                           http://www.springframework.org/schema/mvc/spring-mvc.xsd
+                           http://www.springframework.org/schema/data/jpa
+                           http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
+
+	<context:component-scan base-package="com.service.upemgur" />
+	<jpa:repositories base-package="com.service.upemgur.repository" />
+
+	<bean
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:webservices.properties</value>
+			</list>
+		</property>
+		<property name="fileEncoding" value="UTF-8" />
+		<property name="ignoreUnresolvablePlaceholders" value="true" />
+	</bean>
+
+
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+
+		<!-- one of the properties available; the maximum file size in bytes -->
+		<property name="maxUploadSize" value="5000000" />
+	</bean>
+
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix">
+			<value>/WEB-INF/jsp/</value>
+		</property>
+		<property name="viewClass">
+			<value>org.springframework.web.servlet.view.JstlView</value>
+		</property>
+		<property name="suffix">
+			<value>.jsp</value>
+		</property>
+		<property name="order" value="1" />
+	</bean>
+
+	<mvc:resources mapping="/ressources/**" location="public/ressources/" />
+
+	<!-- <bean id="savedRequestAwareAuthenticationSuccessHandler" -->
+	<!-- class="org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler"> -->
+	<!-- <property name="targetUrlParameter" value="targetUrl" /> -->
+	<!-- </bean> -->
+	<bean id="loginSuccessHandler" class="com.service.upemgur.handler.LoginSuccessHandler">
+		<property name="defaultTargetUrl" value="/upemgur/index" />
+		<property name="alwaysUseDefaultTargetUrl" value="true" />
+	</bean>
+
+
+</beans>
